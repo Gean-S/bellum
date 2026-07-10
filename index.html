@@ -11,9 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Supabase JS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js">
+    </script>
 
     <style>
+        /* ============================================
+               CSS CUSTOM PROPERTIES (Variáveis)
+               ============================================ */
         :root {
             --bg-deep: #06060d;
             --bg-card: #111122;
@@ -117,6 +121,9 @@
             padding: 24px 20px 100px;
         }
 
+        /* ============================================
+               HEADER
+               ============================================ */
         .app-header {
             text-align: center;
             padding: 40px 20px 20px;
@@ -131,8 +138,13 @@
         }
 
         @keyframes floatIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
         }
 
         .app-header h1 {
@@ -151,8 +163,13 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .app-header .subtitle {
@@ -179,6 +196,9 @@
             transition: all var(--transition-smooth);
         }
 
+        /* ============================================
+               TABS DE CATEGORIAS
+               ============================================ */
         .category-tabs-wrapper {
             display: flex;
             justify-content: center;
@@ -238,8 +258,14 @@
             letter-spacing: 1.5px;
         }
 
-        .category-tab .tab-emoji { margin-right: 4px; font-size: 0.85rem; }
+        .category-tab .tab-emoji {
+            margin-right: 4px;
+            font-size: 0.85rem;
+        }
 
+        /* ============================================
+               GRID DE CARDS
+               ============================================ */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -253,7 +279,11 @@
             border: 1px solid var(--border-subtle);
             overflow: hidden;
             position: relative;
-            transition: transform var(--transition-bounce), box-shadow var(--transition-smooth), border-color var(--transition-smooth), background var(--transition-smooth);
+            transition:
+                transform var(--transition-bounce),
+                box-shadow var(--transition-smooth),
+                border-color var(--transition-smooth),
+                background var(--transition-smooth);
             display: flex;
             flex-direction: column;
             opacity: 0;
@@ -262,19 +292,44 @@
             will-change: transform, opacity, box-shadow;
         }
 
-        @keyframes cardEntry { to { opacity: 1; transform: translateY(0); } }
-        .card:nth-child(1) { animation-delay: 0.05s; }
-        .card:nth-child(2) { animation-delay: 0.12s; }
-        .card:nth-child(3) { animation-delay: 0.19s; }
-        .card:nth-child(4) { animation-delay: 0.26s; }
-        .card:nth-child(5) { animation-delay: 0.33s; }
-        .card:nth-child(6) { animation-delay: 0.40s; }
-        .card:nth-child(7) { animation-delay: 0.47s; }
-        .card:nth-child(8) { animation-delay: 0.54s; }
+        @keyframes cardEntry {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .card:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+        .card:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+        .card:nth-child(4) {
+            animation-delay: 0.26s;
+        }
+        .card:nth-child(5) {
+            animation-delay: 0.33s;
+        }
+        .card:nth-child(6) {
+            animation-delay: 0.40s;
+        }
+        .card:nth-child(7) {
+            animation-delay: 0.47s;
+        }
+        .card:nth-child(8) {
+            animation-delay: 0.54s;
+        }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(123, 47, 255, 0.55), 0 0 55px rgba(123, 47, 255, 0.2), 0 16px 40px rgba(0, 0, 0, 0.6);
+            box-shadow:
+                0 0 25px rgba(123, 47, 255, 0.55),
+                0 0 55px rgba(123, 47, 255, 0.2),
+                0 16px 40px rgba(0, 0, 0, 0.6);
             border-color: var(--border-glow);
             background: var(--bg-card-hover);
             z-index: 5;
@@ -282,12 +337,14 @@
 
         .card .btn-remove {
             position: absolute;
-            top: 12px; right: 12px;
+            top: 12px;
+            right: 12px;
             z-index: 10;
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(0,0,0,0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.7);
             color: #fff;
             font-size: 1rem;
             cursor: pointer;
@@ -301,7 +358,12 @@
             -webkit-backdrop-filter: blur(6px);
             line-height: 1;
         }
-        .card:hover .btn-remove { opacity: 1; transform: scale(1); }
+
+        .card:hover .btn-remove {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         .card .btn-remove:hover {
             background: var(--neon-pink);
             border-color: var(--neon-pink);
@@ -317,36 +379,58 @@
             flex-shrink: 0;
             background: #0a0a14;
         }
+
         .card-image-wrapper img {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: block;
             transition: transform var(--transition-smooth);
         }
-        .card:hover .card-image-wrapper img { transform: scale(1.08); }
+
+        .card:hover .card-image-wrapper img {
+            transform: scale(1.08);
+        }
 
         .card-screenshot-fallback {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             transition: transform var(--transition-smooth);
             position: relative;
         }
-        .card:hover .card-screenshot-fallback { transform: scale(1.08); }
+
+        .card:hover .card-screenshot-fallback {
+            transform: scale(1.08);
+        }
+
         .screenshot-header {
             height: 28px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             gap: 7px;
             padding: 0 12px;
             flex-shrink: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
-        .screenshot-header .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-        .dot.red { background: #ff5f57; }
-        .dot.yellow { background: #febc2e; }
-        .dot.green { background: #28c840; }
+
+        .screenshot-header .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .dot.red {
+            background: #ff5f57;
+        }
+        .dot.yellow {
+            background: #febc2e;
+        }
+        .dot.green {
+            background: #28c840;
+        }
 
         .screenshot-body {
             flex: 1;
@@ -358,24 +442,46 @@
             position: relative;
             overflow: hidden;
         }
+
         .screenshot-body .code-line {
-            height: 6px; border-radius: 3px;
-            background: var(--line-color, rgba(255,255,255,0.2));
-            width: 85%; opacity: 0.7;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--line-color, rgba(255, 255, 255, 0.2));
+            width: 85%;
+            opacity: 0.7;
         }
-        .screenshot-body .code-line.short { width: 45%; }
-        .screenshot-body .code-line.medium { width: 62%; }
-        .screenshot-body .code-line.accent { background: var(--accent-color, #7b2fff); opacity: 0.9; width: 50%; }
+        .screenshot-body .code-line.short {
+            width: 45%;
+        }
+        .screenshot-body .code-line.medium {
+            width: 62%;
+        }
+        .screenshot-body .code-line.accent {
+            background: var(--accent-color, #7b2fff);
+            opacity: 0.9;
+            width: 50%;
+        }
+
         .screenshot-body::after {
             content: '▮';
             position: absolute;
-            bottom: 16px; left: 16px;
+            bottom: 16px;
+            left: 16px;
             color: var(--accent-color, #00e5ff);
             font-size: 0.9rem;
             animation: blink 1s step-end infinite;
             opacity: 0.8;
         }
-        @keyframes blink { 0%,100%{opacity:0.8;} 50%{opacity:0;} }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
 
         .card .btn-access {
             display: block;
@@ -391,14 +497,15 @@
             margin: 0;
             background: linear-gradient(135deg, #1a1a35, #2a1a45);
             border: none;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             transition: all var(--transition-smooth);
             position: relative;
             overflow: hidden;
             cursor: pointer;
             flex-shrink: 0;
         }
+
         .card .btn-access::before {
             content: '';
             position: absolute;
@@ -408,11 +515,31 @@
             transition: opacity var(--transition-smooth);
             z-index: 0;
         }
-        .card .btn-access:hover::before { opacity: 1; }
-        .card .btn-access span { position: relative; z-index: 1; }
-        .card .btn-access:hover { color: #fff; box-shadow: var(--shadow-neon-purple); letter-spacing: 3px; }
-        .card .btn-access .arrow-icon { display: inline-block; transition: transform var(--transition-fast); margin-left: 4px; }
-        .card .btn-access:hover .arrow-icon { transform: translate(3px, -2px); }
+
+        .card .btn-access:hover::before {
+            opacity: 1;
+        }
+
+        .card .btn-access span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card .btn-access:hover {
+            color: #fff;
+            box-shadow: var(--shadow-neon-purple);
+            letter-spacing: 3px;
+        }
+
+        .card .btn-access .arrow-icon {
+            display: inline-block;
+            transition: transform var(--transition-fast);
+            margin-left: 4px;
+        }
+
+        .card .btn-access:hover .arrow-icon {
+            transform: translate(3px, -2px);
+        }
 
         .card-content {
             padding: 18px 20px 20px;
@@ -421,6 +548,7 @@
             flex-direction: column;
             gap: 8px;
         }
+
         .card-content .card-title {
             font-family: var(--font-display);
             font-size: 1.1rem;
@@ -429,6 +557,7 @@
             color: #fff;
             line-height: 1.3;
         }
+
         .card-content .card-description {
             font-size: 0.9rem;
             color: var(--text-secondary);
@@ -439,6 +568,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .card-category-tag {
             display: inline-block;
             padding: 4px 10px;
@@ -454,7 +584,14 @@
             align-self: flex-start;
             margin-bottom: 2px;
         }
-        .card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
         .tag {
             display: inline-block;
             padding: 5px 13px;
@@ -468,28 +605,73 @@
             transition: all var(--transition-fast);
             white-space: nowrap;
         }
-        .tag:hover { transform: scale(1.06); box-shadow: 0 0 12px currentColor; }
-        .tag.quality-excelente { background: rgba(0,255,136,0.12); color:#00ff88; border-color: rgba(0,255,136,0.4); }
-        .tag.quality-muito-bom { background: rgba(255,204,0,0.12); color:#ffcc00; border-color: rgba(255,204,0,0.4); }
-        .tag.quality-bom { background: rgba(0,191,255,0.12); color:#00bfff; border-color: rgba(0,191,255,0.4); }
-        .tag.quality-regular { background: rgba(255,136,0,0.12); color:#ff8800; border-color: rgba(255,136,0,0.4); }
-        .tag.cost-gratis { background: rgba(0,229,255,0.12); color:#00e5ff; border-color: rgba(0,229,255,0.4); }
-        .tag.cost-pago { background: rgba(255,51,102,0.12); color:#ff3366; border-color: rgba(255,51,102,0.4); }
-        .tag.cost-freemium { background: rgba(179,128,255,0.12); color:#b380ff; border-color: rgba(179,128,255,0.4); }
-        .tag.cost-gratis-pago { background: rgba(255,170,0,0.12); color:#ffaa00; border-color: rgba(255,170,0,0.4); }
 
+        .tag:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 12px currentColor;
+        }
+
+        .tag.quality-excelente {
+            background: rgba(0, 255, 136, 0.12);
+            color: #00ff88;
+            border-color: rgba(0, 255, 136, 0.4);
+        }
+        .tag.quality-muito-bom {
+            background: rgba(255, 204, 0, 0.12);
+            color: #ffcc00;
+            border-color: rgba(255, 204, 0, 0.4);
+        }
+        .tag.quality-bom {
+            background: rgba(0, 191, 255, 0.12);
+            color: #00bfff;
+            border-color: rgba(0, 191, 255, 0.4);
+        }
+        .tag.quality-regular {
+            background: rgba(255, 136, 0, 0.12);
+            color: #ff8800;
+            border-color: rgba(255, 136, 0, 0.4);
+        }
+        .tag.cost-gratis {
+            background: rgba(0, 229, 255, 0.12);
+            color: #00e5ff;
+            border-color: rgba(0, 229, 255, 0.4);
+        }
+        .tag.cost-pago {
+            background: rgba(255, 51, 102, 0.12);
+            color: #ff3366;
+            border-color: rgba(255, 51, 102, 0.4);
+        }
+        .tag.cost-freemium {
+            background: rgba(179, 128, 255, 0.12);
+            color: #b380ff;
+            border-color: rgba(179, 128, 255, 0.4);
+        }
+        .tag.cost-gratis-pago {
+            background: rgba(255, 170, 0, 0.12);
+            color: #ffaa00;
+            border-color: rgba(255, 170, 0, 0.4);
+        }
+
+        /* ============================================
+               BOTÃO FLUTUANTE
+               ============================================ */
         .fab-add {
             position: fixed;
-            bottom: 32px; right: 32px;
+            bottom: 32px;
+            right: 32px;
             z-index: 100;
-            width: 60px; height: 60px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             border: none;
             cursor: pointer;
             font-size: 2rem;
             color: #fff;
             background: linear-gradient(135deg, var(--neon-purple), var(--neon-magenta));
-            box-shadow: 0 0 25px rgba(224, 64, 251, 0.5), 0 0 50px rgba(123, 47, 255, 0.35), 0 8px 25px rgba(0,0,0,0.5);
+            box-shadow:
+                0 0 25px rgba(224, 64, 251, 0.5),
+                0 0 50px rgba(123, 47, 255, 0.35),
+                0 8px 25px rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -497,17 +679,36 @@
             animation: pulseBtn 2.5s ease-in-out infinite;
             line-height: 1;
         }
-        .fab-add:hover { transform: scale(1.12); box-shadow: 0 0 35px rgba(224,64,251,0.7), 0 0 65px rgba(123,47,255,0.5), 0 12px 35px rgba(0,0,0,0.6); animation-play-state: paused; }
-        .fab-add:active { transform: scale(0.94); transition: transform 0.1s ease; }
-        @keyframes pulseBtn {
-            0%,100%{ box-shadow: 0 0 25px rgba(224,64,251,0.5), 0 0 50px rgba(123,47,255,0.35), 0 8px 25px rgba(0,0,0,0.5); }
-            50%{ box-shadow: 0 0 40px rgba(224,64,251,0.75), 0 0 75px rgba(123,47,255,0.55), 0 12px 35px rgba(0,0,0,0.6); }
+
+        .fab-add:hover {
+            transform: scale(1.12);
+            box-shadow:
+                0 0 35px rgba(224, 64, 251, 0.7),
+                0 0 65px rgba(123, 47, 255, 0.5),
+                0 12px 35px rgba(0, 0, 0, 0.6);
+            animation-play-state: paused;
         }
+
+        .fab-add:active {
+            transform: scale(0.94);
+            transition: transform 0.1s ease;
+        }
+
+        @keyframes pulseBtn {
+            0%,
+            100% {
+                box-shadow: 0 0 25px rgba(224, 64, 251, 0.5), 0 0 50px rgba(123, 47, 255, 0.35), 0 8px 25px rgba(0, 0, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(224, 64, 251, 0.75), 0 0 75px rgba(123, 47, 255, 0.55), 0 12px 35px rgba(0, 0, 0, 0.6);
+            }
+        }
+
         .fab-add::after {
             content: 'Adicionar Site';
             position: absolute;
             right: 72px;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.85);
             color: #fff;
             padding: 8px 16px;
             border-radius: 20px;
@@ -519,14 +720,23 @@
             opacity: 0;
             transform: translateX(10px);
             transition: all var(--transition-smooth);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             letter-spacing: 0.5px;
         }
-        .fab-add:hover::after { opacity: 1; transform: translateX(0); }
 
+        .fab-add:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ============================================
+               MODAIS
+               ============================================ */
         .modal-overlay {
-            position: fixed; inset: 0; z-index: 200;
-            background: rgba(0,0,0,0.75);
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             display: flex;
@@ -537,12 +747,20 @@
             pointer-events: none;
             transition: opacity var(--transition-smooth);
         }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .modal {
             background: var(--bg-modal);
             border-radius: var(--radius-modal);
             border: 1px solid var(--border-glow);
-            box-shadow: 0 0 40px rgba(123,47,255,0.3), 0 0 80px rgba(0,229,255,0.15), 0 25px 60px rgba(0,0,0,0.7);
+            box-shadow:
+                0 0 40px rgba(123, 47, 255, 0.3),
+                0 0 80px rgba(0, 229, 255, 0.15),
+                0 25px 60px rgba(0, 0, 0, 0.7);
             padding: 32px 28px 28px;
             width: 100%;
             max-width: 520px;
@@ -552,14 +770,20 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-        .modal-overlay.active .modal { transform: scale(1); }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
         .modal-close {
             position: absolute;
-            top: 14px; right: 18px;
-            width: 36px; height: 36px;
+            top: 14px;
+            right: 18px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.25);
-            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(0, 0, 0, 0.5);
             color: #fff;
             font-size: 1.2rem;
             cursor: pointer;
@@ -572,7 +796,14 @@
             -webkit-backdrop-filter: blur(4px);
             line-height: 1;
         }
-        .modal-close:hover { background: var(--neon-pink); border-color: var(--neon-pink); box-shadow: 0 0 16px rgba(255,51,102,0.6); transform: rotate(90deg); }
+
+        .modal-close:hover {
+            background: var(--neon-pink);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 16px rgba(255, 51, 102, 0.6);
+            transform: rotate(90deg);
+        }
+
         .modal h2 {
             font-family: var(--font-display);
             font-size: 1.5rem;
@@ -583,6 +814,7 @@
             margin-bottom: 6px;
             text-align: center;
         }
+
         .modal .modal-subtitle {
             text-align: center;
             color: var(--text-muted);
@@ -590,7 +822,11 @@
             margin-bottom: 22px;
             letter-spacing: 1px;
         }
-        .form-group { margin-bottom: 16px; }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
         .form-group label {
             display: block;
             font-family: var(--font-display);
@@ -601,11 +837,14 @@
             color: var(--text-secondary);
             margin-bottom: 6px;
         }
-        .form-group input, .form-group select, .form-group textarea {
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 12px 16px;
             border-radius: var(--radius-btn);
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             background: var(--bg-input);
             color: #fff;
             font-family: var(--font-body);
@@ -615,11 +854,20 @@
             outline: none;
             letter-spacing: 0.5px;
         }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
             border-color: var(--neon-purple);
-            box-shadow: 0 0 16px rgba(123,47,255,0.4), 0 0 0 3px rgba(123,47,255,0.1);
+            box-shadow: 0 0 16px rgba(123, 47, 255, 0.4), 0 0 0 3px rgba(123, 47, 255, 0.1);
         }
-        .form-group textarea { resize: vertical; min-height: 70px; max-height: 140px; }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+            max-height: 140px;
+        }
+
         .form-group select {
             cursor: pointer;
             appearance: none;
@@ -629,8 +877,18 @@
             background-position: right 14px center;
             padding-right: 40px;
         }
-        .form-group select option { background: #1a1a30; color: #fff; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .form-group select option {
+            background: #1a1a30;
+            color: #fff;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
         .btn-submit {
             width: 100%;
             padding: 14px 24px;
@@ -644,19 +902,33 @@
             text-transform: uppercase;
             color: #fff;
             background: linear-gradient(135deg, var(--neon-purple), var(--neon-magenta));
-            box-shadow: 0 0 20px rgba(224,64,251,0.3);
+            box-shadow: 0 0 20px rgba(224, 64, 251, 0.3);
             transition: all var(--transition-smooth);
             margin-top: 6px;
             position: relative;
             overflow: hidden;
         }
-        .btn-submit:hover { box-shadow: 0 0 35px rgba(224,64,251,0.55), 0 0 60px rgba(123,47,255,0.4); letter-spacing: 3px; transform: translateY(-2px); }
-        .btn-submit:active { transform: scale(0.96); transition: transform 0.1s ease; }
-        .btn-submit.loading { pointer-events: none; opacity: 0.7; }
+
+        .btn-submit:hover {
+            box-shadow: 0 0 35px rgba(224, 64, 251, 0.55), 0 0 60px rgba(123, 47, 255, 0.4);
+            letter-spacing: 3px;
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
+
+        .btn-submit.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
         .btn-submit.loading::after {
             content: '';
             position: absolute;
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             border: 2px solid transparent;
             border-top-color: #fff;
             border-radius: 50%;
@@ -665,12 +937,21 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
 
-        /* Modal de confirmação */
+        @keyframes spin {
+            to {
+                transform: translateY(-50%) rotate(360deg);
+            }
+        }
+
+        /* ============================================
+               MODAL DE CONFIRMAÇÃO (REMOÇÃO)
+               ============================================ */
         .confirm-overlay {
-            position: fixed; inset: 0; z-index: 250;
-            background: rgba(0,0,0,0.8);
+            position: fixed;
+            inset: 0;
+            z-index: 250;
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             display: flex;
@@ -681,12 +962,20 @@
             pointer-events: none;
             transition: opacity var(--transition-smooth);
         }
-        .confirm-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .confirm-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .confirm-dialog {
             background: var(--bg-modal);
             border-radius: var(--radius-modal);
-            border: 1px solid rgba(255,51,102,0.5);
-            box-shadow: 0 0 35px rgba(255,51,102,0.25), 0 0 70px rgba(255,51,102,0.1), 0 20px 50px rgba(0,0,0,0.7);
+            border: 1px solid rgba(255, 51, 102, 0.5);
+            box-shadow:
+                0 0 35px rgba(255, 51, 102, 0.25),
+                0 0 70px rgba(255, 51, 102, 0.1),
+                0 20px 50px rgba(0, 0, 0, 0.7);
             padding: 30px 26px 24px;
             width: 100%;
             max-width: 440px;
@@ -695,14 +984,19 @@
             transform: scale(0.85);
             transition: transform var(--transition-bounce);
         }
-        .confirm-overlay.active .confirm-dialog { transform: scale(1); }
+
+        .confirm-overlay.active .confirm-dialog {
+            transform: scale(1);
+        }
+
         .confirm-icon {
             font-size: 3.5rem;
             display: block;
             margin-bottom: 12px;
             animation: floatIcon 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px rgba(255,51,102,0.6));
+            filter: drop-shadow(0 0 15px rgba(255, 51, 102, 0.6));
         }
+
         .confirm-dialog h3 {
             font-family: var(--font-display);
             font-size: 1.3rem;
@@ -712,7 +1006,14 @@
             margin-bottom: 8px;
             text-transform: uppercase;
         }
-        .confirm-dialog .confirm-message { color: var(--text-secondary); font-size: 1rem; margin-bottom: 6px; line-height: 1.5; }
+
+        .confirm-dialog .confirm-message {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
         .confirm-dialog .confirm-site-name {
             font-family: var(--font-display);
             font-size: 1.2rem;
@@ -721,14 +1022,21 @@
             letter-spacing: 1px;
             margin-bottom: 20px;
             padding: 8px 16px;
-            background: rgba(255,51,102,0.08);
+            background: rgba(255, 51, 102, 0.08);
             border-radius: 8px;
-            border: 1px solid rgba(255,51,102,0.25);
+            border: 1px solid rgba(255, 51, 102, 0.25);
             display: inline-block;
             word-break: break-word;
             max-width: 100%;
         }
-        .confirm-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        .confirm-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .confirm-btn {
             padding: 12px 28px;
             border-radius: 50px;
@@ -744,17 +1052,40 @@
             position: relative;
             overflow: hidden;
         }
-        .confirm-btn-cancel { background: rgba(255,255,255,0.08); color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
-        .confirm-btn-cancel:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); box-shadow: 0 0 15px rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        .confirm-btn-cancel {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .confirm-btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
         .confirm-btn-delete {
             background: linear-gradient(135deg, #ff3366, #cc0055);
             color: #fff;
-            border-color: rgba(255,51,102,0.6);
-            box-shadow: 0 0 18px rgba(255,51,102,0.35);
+            border-color: rgba(255, 51, 102, 0.6);
+            box-shadow: 0 0 18px rgba(255, 51, 102, 0.35);
         }
-        .confirm-btn-delete:hover { box-shadow: 0 0 30px rgba(255,51,102,0.6), 0 0 55px rgba(255,51,102,0.3); transform: translateY(-2px); letter-spacing: 2px; }
-        .confirm-btn-delete:active { transform: scale(0.94); }
 
+        .confirm-btn-delete:hover {
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.6), 0 0 55px rgba(255, 51, 102, 0.3);
+            transform: translateY(-2px);
+            letter-spacing: 2px;
+        }
+
+        .confirm-btn-delete:active {
+            transform: scale(0.94);
+        }
+
+        /* ============================================
+               INDICADOR DE CONEXÃO
+               ============================================ */
         .connection-indicator {
             display: inline-flex;
             align-items: center;
@@ -768,18 +1099,41 @@
             text-transform: uppercase;
             margin-top: 6px;
         }
-        .connection-indicator.online { background: rgba(0,255,136,0.1); color:#00ff88; border: 1px solid rgba(0,255,136,0.3); }
-        .connection-indicator.offline { background: rgba(255,51,102,0.1); color:#ff3366; border: 1px solid rgba(255,51,102,0.3); }
-        .connection-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-        .online .connection-dot { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
-        .offline .connection-dot { background: #ff3366; box-shadow: 0 0 8px #ff3366; }
+        .connection-indicator.online {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        .connection-indicator.offline {
+            background: rgba(255, 51, 102, 0.1);
+            color: #ff3366;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+        .connection-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .online .connection-dot {
+            background: #00ff88;
+            box-shadow: 0 0 8px #00ff88;
+        }
+        .offline .connection-dot {
+            background: #ff3366;
+            box-shadow: 0 0 8px #ff3366;
+        }
 
+        /* ============================================
+               TOAST
+               ============================================ */
         .toast {
             position: fixed;
-            bottom: 32px; left: 50%;
+            bottom: 32px;
+            left: 50%;
             transform: translateX(-50%) translateY(120px);
             z-index: 300;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.9);
             color: #fff;
             padding: 12px 28px;
             border-radius: 50px;
@@ -787,8 +1141,8 @@
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
             transition: transform var(--transition-bounce);
             pointer-events: none;
             text-align: center;
@@ -797,10 +1151,23 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        .toast.success { border-color: var(--neon-green); box-shadow: 0 0 20px rgba(0,255,136,0.3); }
-        .toast.error { border-color: var(--neon-pink); box-shadow: 0 0 20px rgba(255,51,102,0.3); }
 
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        .toast.error {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
+        }
+
+        /* ============================================
+               ESTADO VAZIO & LOADING
+               ============================================ */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -810,45 +1177,167 @@
             font-size: 1.2rem;
             letter-spacing: 1px;
         }
-        .empty-state .empty-icon { font-size: 4rem; display: block; margin-bottom: 16px; filter: grayscale(0.5); animation: floatIcon 4s ease-in-out infinite; }
 
-        .loading-spinner-grid { grid-column: 1 / -1; display: flex; justify-content: center; align-items: center; padding: 60px 20px; }
+        .empty-state .empty-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+            filter: grayscale(0.5);
+            animation: floatIcon 4s ease-in-out infinite;
+        }
+
+        .loading-spinner-grid {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
         .spinner-cyber {
-            width: 48px; height: 48px;
-            border: 3px solid rgba(123,47,255,0.3);
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(123, 47, 255, 0.3);
             border-top-color: var(--neon-cyan);
             border-right-color: var(--neon-magenta);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            box-shadow: 0 0 20px rgba(0,229,255,0.4);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
         }
 
+        /* ============================================
+               RESPONSIVIDADE
+               ============================================ */
         @media (max-width: 768px) {
-            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-            .app-header h1 { font-size: 1.6rem; }
-            .fab-add { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 1.6rem; }
-            .fab-add::after { display: none; }
-            .modal { padding: 24px 18px 20px; border-radius: 16px; }
-            .form-row { grid-template-columns: 1fr; }
-            .card-image-wrapper { height: 140px; }
-            .category-tabs { gap: 4px; padding: 4px 6px; border-radius: 30px; }
-            .category-tab { padding: 8px 12px; font-size: 0.62rem; }
-            .confirm-dialog { padding: 24px 18px 20px; border-radius: 16px; }
-            .confirm-actions { flex-direction: column; gap: 10px; }
-            .confirm-btn { width: 100%; min-width: unset; }
-        }
-        @media (max-width: 480px) {
-            .cards-grid { grid-template-columns: 1fr; gap: 16px; }
-            .app-container { padding: 12px 10px 90px; }
-            .app-header { padding: 24px 10px 10px; }
-            .card-image-wrapper { height: 150px; }
-            .fab-add { width: 46px; height: 46px; bottom: 16px; right: 16px; font-size: 1.4rem; }
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 18px;
+            }
+            .app-header h1 {
+                font-size: 1.6rem;
+                letter-spacing: 1.5px;
+            }
+            .app-header .logo-icon {
+                font-size: 2.4rem;
+            }
+            .fab-add {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.6rem;
+            }
+            .fab-add::after {
+                display: none;
+            }
+            .modal {
+                padding: 24px 18px 20px;
+                border-radius: 16px;
+            }
+            .modal h2 {
+                font-size: 1.25rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .card-image-wrapper {
+                height: 140px;
+            }
+            .category-tabs {
+                gap: 4px;
+                padding: 4px 6px;
+                border-radius: 30px;
+            }
+            .category-tab {
+                padding: 8px 12px;
+                font-size: 0.62rem;
+                letter-spacing: 0.5px;
+            }
+            .category-tab .tab-emoji {
+                font-size: 0.75rem;
+                margin-right: 2px;
+            }
+            .confirm-dialog {
+                padding: 24px 18px 20px;
+                border-radius: 16px;
+            }
+            .confirm-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .confirm-btn {
+                width: 100%;
+                min-width: unset;
+            }
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; box-shadow: 0 0 6px rgba(123,47,255,0.4); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--neon-magenta); }
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .app-container {
+                padding: 12px 10px 90px;
+            }
+            .app-header {
+                padding: 24px 10px 10px;
+            }
+            .card-image-wrapper {
+                height: 150px;
+            }
+            .card-content {
+                padding: 14px 16px 16px;
+            }
+            .fab-add {
+                width: 46px;
+                height: 46px;
+                bottom: 16px;
+                right: 16px;
+                font-size: 1.4rem;
+            }
+            .category-tabs {
+                gap: 3px;
+                padding: 3px 4px;
+                border-radius: 24px;
+            }
+            .category-tab {
+                padding: 7px 10px;
+                font-size: 0.58rem;
+                letter-spacing: 0.3px;
+            }
+            .category-tab .tab-emoji {
+                font-size: 0.7rem;
+                margin-right: 1px;
+            }
+        }
+
+        /* ============================================
+               SCROLLBAR CUSTOM
+               ============================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-purple);
+            border-radius: 10px;
+            box-shadow: 0 0 6px rgba(123, 47, 255, 0.4);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-magenta);
+        }
+
+        .modal::-webkit-scrollbar,
+        .confirm-dialog::-webkit-scrollbar {
+            width: 4px;
+        }
+        .modal::-webkit-scrollbar-thumb,
+        .confirm-dialog::-webkit-scrollbar-thumb {
+            background: var(--neon-cyan);
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -859,8 +1348,8 @@
             <h1>DevFavs</h1>
             <p class="subtitle">Painel de Programação</p>
             <span class="bookmark-count" id="bookmarkCount">0 sites salvos</span>
-            <span class="connection-indicator" id="connectionIndicator">
-                <span class="connection-dot"></span> Conectando...
+            <span class="connection-indicator offline" id="connectionIndicator">
+                <span class="connection-dot"></span> Offline
             </span>
         </header>
 
@@ -887,7 +1376,7 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal" role="dialog" aria-labelledby="modalTitle">
             <button class="modal-close" id="modalClose" aria-label="Fechar modal">&times;</button>
-            <h2 id="modalTitle">Novo Favorito</h2>
+            <h2 id="modalTitle">Novo Modelo</h2>
             <p class="modal-subtitle">Preencha os dados do site</p>
             <form id="addBookmarkForm" novalidate>
                 <div class="form-group">
@@ -935,7 +1424,7 @@
         </div>
     </div>
 
-    <!-- Modal de Confirmação -->
+    <!-- Modal de Confirmação de Remoção -->
     <div class="confirm-overlay" id="confirmOverlay">
         <div class="confirm-dialog" role="dialog" aria-labelledby="confirmTitle">
             <span class="confirm-icon">⚠️</span>
@@ -955,27 +1444,29 @@
     <script>
         (function() {
             // ──────────────────────────────────────
-            // CONFIGURAÇÃO SUPABASE (CREDENCIAIS REAIS)
+            // CONFIGURAÇÃO DO SUPABASE (substitua com suas credenciais)
             // ──────────────────────────────────────
-            const SUPABASE_URL = 'https://zajkmrzyosyixfyxnbyj.supabase.co';
-            const SUPABASE_ANON_KEY = 'sb_publishable_PCnPbnjoyeelPebnFaFuOg_mVucNOA_';
+            const SUPABASE_URL = 'https://SEU_PROJETO.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
+            const IS_SUPABASE_CONFIGURED = !SUPABASE_URL.includes('SEU_PROJETO') && !SUPABASE_ANON_KEY.includes(
+                '...');
 
-            // Inicializar cliente Supabase
             let supabaseClient = null;
             let usingSupabase = false;
 
-            try {
-                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                usingSupabase = true;
-                console.log('%c🟢 Supabase %cconectado!', 'color:#00ff88;font-weight:bold;', 'color:#fff;');
-            } catch (e) {
-                console.error('Erro ao conectar ao Supabase:', e);
-                usingSupabase = false;
+            if (IS_SUPABASE_CONFIGURED && typeof supabase !== 'undefined' && supabase.createClient) {
+                try {
+                    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    usingSupabase = true;
+                    console.log('%c🟢 Supabase %cconectado!', 'color:#00ff88;font-weight:bold;', 'color:#fff;');
+                } catch (e) {
+                    console.warn('Erro ao inicializar Supabase:', e.message);
+                }
+            } else if (!IS_SUPABASE_CONFIGURED) {
+                console.warn('%c⚠️ Supabase não configurado.%c Usando armazenamento local.', 'color:#ffaa00;',
+                    'color:#fff;');
             }
 
-            // ──────────────────────────────────────
-            // CATEGORIAS
-            // ──────────────────────────────────────
             const CATEGORIES = [
                 { id: 'todas', emoji: '📋', label: 'Todas' },
                 { id: 'ia', emoji: '🧠', label: 'IA / Chatbots' },
@@ -1023,12 +1514,43 @@
             let pendingRemoveId = null;
             let pendingRemoveName = '';
 
-            const defaultBookmarks = [
-                { name: 'GitHub', description: 'Plataforma de hospedagem de código-fonte.', quality: 'Excelente', cost: 'Grátis', imageUrl: '', siteUrl: 'https://github.com', category: 'ferramentas', fallbackColors: { bg: '#0d1117', accent: '#58a6ff', line: '#30363d' } },
-                { name: 'ChatGPT', description: 'Assistente de IA da OpenAI.', quality: 'Excelente', cost: 'Freemium', imageUrl: '', siteUrl: 'https://chat.openai.com', category: 'ia', fallbackColors: { bg: '#1a3a2a', accent: '#00ff88', line: '#2a4a3a' } },
-                { name: 'Google Fonts', description: 'Fontes gratuitas para web.', quality: 'Muito Bom', cost: 'Grátis', imageUrl: '', siteUrl: 'https://fonts.google.com', category: 'fontes', fallbackColors: { bg: '#1a1a2e', accent: '#ff6d00', line: '#2a2a3e' } },
-                { name: 'VS Code Marketplace', description: 'Extensões para o VS Code.', quality: 'Excelente', cost: 'Grátis', imageUrl: '', siteUrl: 'https://marketplace.visualstudio.com', category: 'extensoes', fallbackColors: { bg: '#1e1e2e', accent: '#007acc', line: '#3b3b58' } },
-            ];
+            const defaultBookmarks = [{
+                name: 'GitHub',
+                description: 'Plataforma de hospedagem de código-fonte com controle de versão Git.',
+                quality: 'Excelente',
+                cost: 'Grátis',
+                imageUrl: '',
+                siteUrl: 'https://github.com',
+                category: 'ferramentas',
+                fallbackColors: { bg: '#0d1117', accent: '#58a6ff', line: '#30363d' },
+            }, {
+                name: 'ChatGPT',
+                description: 'Assistente de IA da OpenAI para programação, escrita e produtividade.',
+                quality: 'Excelente',
+                cost: 'Freemium',
+                imageUrl: '',
+                siteUrl: 'https://chat.openai.com',
+                category: 'ia',
+                fallbackColors: { bg: '#1a3a2a', accent: '#00ff88', line: '#2a4a3a' },
+            }, {
+                name: 'Google Fonts',
+                description: 'Biblioteca gratuita de fontes tipográficas para web e design.',
+                quality: 'Muito Bom',
+                cost: 'Grátis',
+                imageUrl: '',
+                siteUrl: 'https://fonts.google.com',
+                category: 'fontes',
+                fallbackColors: { bg: '#1a1a2e', accent: '#ff6d00', line: '#2a2a3e' },
+            }, {
+                name: 'VS Code Marketplace',
+                description: 'Extensões oficiais para o Visual Studio Code.',
+                quality: 'Excelente',
+                cost: 'Grátis',
+                imageUrl: '',
+                siteUrl: 'https://marketplace.visualstudio.com',
+                category: 'extensoes',
+                fallbackColors: { bg: '#1e1e2e', accent: '#007acc', line: '#3b3b58' },
+            }, ];
 
             function updateConnectionIndicator() {
                 if (usingSupabase) {
@@ -1036,9 +1558,11 @@
                     connectionIndicator.innerHTML = '<span class="connection-dot"></span> Online (Supabase)';
                 } else {
                     connectionIndicator.className = 'connection-indicator offline';
-                    connectionIndicator.innerHTML = '<span class="connection-dot"></span> Offline (LocalStorage)';
+                    connectionIndicator.innerHTML =
+                        '<span class="connection-dot"></span> Offline (LocalStorage)';
                 }
             }
+            updateConnectionIndicator();
 
             function populateCategorySelect() {
                 inputSiteCategory.innerHTML = '';
@@ -1070,22 +1594,31 @@
 
             function setActiveCategory(categoryId) {
                 activeCategory = categoryId;
-                document.querySelectorAll('.category-tab').forEach(tab => {
-                    tab.classList.toggle('active', tab.dataset.category === categoryId);
-                    tab.setAttribute('aria-selected', tab.dataset.category === categoryId ? 'true' : 'false');
+                const allTabs = categoryTabs.querySelectorAll('.category-tab');
+                allTabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-selected', 'false');
+                    if (tab.getAttribute('data-category') === categoryId) {
+                        tab.classList.add('active');
+                        tab.setAttribute('aria-selected', 'true');
+                    }
                 });
                 renderFilteredCards();
+                categoryTabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             function getFilteredBookmarks() {
-                return activeCategory === 'todas' ? allBookmarks : allBookmarks.filter(b => b.category === activeCategory);
+                if (activeCategory === 'todas') return allBookmarks;
+                return allBookmarks.filter(b => b.category === activeCategory);
             }
 
             // ──────────────────────────────────────
             // SUPABASE FUNCTIONS
             // ──────────────────────────────────────
             async function fetchBookmarksFromSupabase() {
-                const { data, error } = await supabaseClient.from('bookmarks').select('*').order('created_at', { ascending: false });
+                if (!supabaseClient) return [];
+                const { data, error } = await supabaseClient.from('bookmarks').select('*').order('created_at', {
+                    ascending: false });
                 if (error) throw error;
                 return (data || []).map(row => ({
                     id: row.id,
@@ -1102,6 +1635,7 @@
             }
 
             async function insertBookmarkToSupabase(bookmark) {
+                if (!supabaseClient) return null;
                 const { data, error } = await supabaseClient.from('bookmarks').insert([{
                     name: bookmark.name,
                     description: bookmark.description,
@@ -1112,55 +1646,103 @@
                     category: bookmark.category,
                 }]).select().single();
                 if (error) throw error;
-                return { id: data.id, ...bookmark, fallbackColors: generateFallbackColors(bookmark.name) };
+                return {
+                    id: data.id,
+                    name: data.name,
+                    description: data.description || '',
+                    quality: data.quality || 'Bom',
+                    cost: data.cost || 'Grátis',
+                    imageUrl: data.image_url || '',
+                    siteUrl: data.site_url,
+                    category: data.category || 'ferramentas',
+                    fallbackColors: generateFallbackColors(data.name),
+                    created_at: data.created_at,
+                };
             }
 
             async function deleteBookmarkFromSupabase(id) {
+                if (!supabaseClient) return;
                 const { error } = await supabaseClient.from('bookmarks').delete().eq('id', id);
                 if (error) throw error;
             }
 
             async function seedDefaultBookmarksToSupabase() {
-                const { count } = await supabaseClient.from('bookmarks').select('*', { count: 'exact', head: true });
-                if (count === 0) {
-                    const inserts = defaultBookmarks.map(bm => ({
-                        name: bm.name, description: bm.description, quality: bm.quality, cost: bm.cost,
-                        image_url: bm.imageUrl, site_url: bm.siteUrl, category: bm.category,
-                    }));
-                    await supabaseClient.from('bookmarks').insert(inserts);
-                }
+                if (!supabaseClient) return;
+                const { count, error } = await supabaseClient.from('bookmarks').select('*', { count: 'exact',
+                    head: true });
+                if (error || count > 0) return;
+                const inserts = defaultBookmarks.map(bm => ({
+                    name: bm.name,
+                    description: bm.description,
+                    quality: bm.quality,
+                    cost: bm.cost,
+                    image_url: bm.imageUrl,
+                    site_url: bm.siteUrl,
+                    category: bm.category,
+                }));
+                await supabaseClient.from('bookmarks').insert(inserts);
             }
 
             // ──────────────────────────────────────
-            // LOCAL STORAGE FALLBACK
+            // LOCAL STORAGE FUNCTIONS
             // ──────────────────────────────────────
             function loadBookmarksLocal() {
                 try {
                     const raw = localStorage.getItem(STORAGE_KEY);
-                    if (raw) return JSON.parse(raw).map((bm, i) => ({ ...bm, id: bm.id || 'local_' + i, fallbackColors: bm.fallbackColors || generateFallbackColors(bm.name) }));
+                    if (raw) {
+                        const data = JSON.parse(raw);
+                        if (Array.isArray(data) && data.length > 0) {
+                            return data.map((bm, i) => ({
+                                ...bm,
+                                id: bm.id || ('local_' + i + '_' + Date.now()),
+                                fallbackColors: bm.fallbackColors || generateFallbackColors(bm.name),
+                                category: bm.category || 'ferramentas',
+                            }));
+                        }
+                    }
                 } catch (e) {}
                 const defaults = JSON.parse(JSON.stringify(defaultBookmarks));
-                defaults.forEach((bm, i) => bm.id = 'local_default_' + i);
+                defaults.forEach((bm, i) => { bm.id = 'local_default_' + i; });
                 saveBookmarksLocal(defaults);
                 return defaults;
             }
+
             function saveBookmarksLocal(bookmarks) {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(bookmarks.map(bm => ({ ...bm, fallbackColors: undefined }))));
+                try {
+                    const toSave = bookmarks.map(bm => ({
+                        id: bm.id,
+                        name: bm.name,
+                        description: bm.description,
+                        quality: bm.quality,
+                        cost: bm.cost,
+                        imageUrl: bm.imageUrl,
+                        siteUrl: bm.siteUrl,
+                        category: bm.category,
+                        fallbackColors: bm.fallbackColors,
+                    }));
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+                } catch (e) {}
             }
+
             function addBookmarkLocal(bookmark) {
                 const bookmarks = loadBookmarksLocal();
-                bookmark.id = 'local_' + Date.now();
+                bookmark.id = 'local_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
                 bookmark.fallbackColors = generateFallbackColors(bookmark.name);
                 bookmarks.unshift(bookmark);
                 saveBookmarksLocal(bookmarks);
                 return bookmark;
             }
+
             function removeBookmarkLocal(id) {
-                const filtered = loadBookmarksLocal().filter(b => b.id !== id);
+                const bookmarks = loadBookmarksLocal();
+                const filtered = bookmarks.filter(b => b.id !== id);
                 saveBookmarksLocal(filtered);
                 return filtered;
             }
 
+            // ──────────────────────────────────────
+            // CARREGAR TODOS OS BOOKMARKS
+            // ──────────────────────────────────────
             async function loadAllBookmarks() {
                 loadingSpinner.style.display = 'flex';
                 emptyState.style.display = 'none';
@@ -1169,14 +1751,12 @@
                         await seedDefaultBookmarksToSupabase();
                         allBookmarks = await fetchBookmarksFromSupabase();
                     } catch (e) {
-                        console.warn('Erro Supabase, usando local:', e);
                         allBookmarks = loadBookmarksLocal();
-                        usingSupabase = false;
+                        showToast('⚠️ Erro de conexão. Usando dados locais.', 'error');
                     }
                 } else {
                     allBookmarks = loadBookmarksLocal();
                 }
-                updateConnectionIndicator();
                 loadingSpinner.style.display = 'none';
                 renderCategoryTabs();
                 renderFilteredCards();
@@ -1185,16 +1765,27 @@
             function renderFilteredCards() {
                 const filtered = getFilteredBookmarks();
                 cardsGrid.innerHTML = '';
-                loadingSpinner.style.display = 'none';
-                if (!filtered.length) {
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                if (!filtered || filtered.length === 0) {
                     emptyState.style.display = 'block';
-                    emptyStateText.textContent = activeCategory === 'todas' ? 'Nenhum site favorito ainda.' : 'Nenhum site na categoria.';
-                    bookmarkCount.textContent = allBookmarks.length + ' site(s) salvos';
+                    if (activeCategory === 'todas') {
+                        emptyStateText.textContent = 'Nenhum site favorito ainda.';
+                    } else {
+                        const catInfo = CATEGORIES.find(c => c.id === activeCategory);
+                        emptyStateText.textContent = 'Nenhum site na categoria "' + (catInfo ? catInfo.label :
+                            activeCategory) + '".';
+                    }
+                    bookmarkCount.textContent = allBookmarks.length + ' site' + (allBookmarks.length !== 1 ? 's' :
+                        '') + ' salvos';
                     return;
                 }
                 emptyState.style.display = 'none';
-                bookmarkCount.textContent = allBookmarks.length + ' site(s) salvos' + (activeCategory !== 'todas' ? ' (filtrado: ' + filtered.length + ')' : '');
-                filtered.forEach((bm, i) => cardsGrid.appendChild(createCardElement(bm, i)));
+                bookmarkCount.textContent = allBookmarks.length + ' site' + (allBookmarks.length !== 1 ? 's' : '') +
+                    ' salvos' + (activeCategory !== 'todas' ? ' (filtrado: ' + filtered.length + ')' : '');
+                filtered.forEach((bookmark, index) => {
+                    const card = createCardElement(bookmark, index);
+                    cardsGrid.appendChild(card);
+                });
             }
 
             function generateFallbackColors(seed) {
@@ -1202,129 +1793,323 @@
                     { bg: '#0d1117', accent: '#58a6ff', line: '#21262d' },
                     { bg: '#1a1025', accent: '#c084fc', line: '#2d1f3d' },
                     { bg: '#0f1a1a', accent: '#00e5ff', line: '#1a2d2d' },
+                    { bg: '#1a0f0f', accent: '#ff6b6b', line: '#2d1a1a' },
+                    { bg: '#101820', accent: '#ffcc00', line: '#1f2d35' },
+                    { bg: '#15141a', accent: '#ff6d00', line: '#25242d' },
+                    { bg: '#0d1a14', accent: '#00ff88', line: '#1a2d22' },
+                    { bg: '#1a1a2e', accent: '#e040fb', line: '#2a2a45' },
                 ];
                 let hash = 0;
-                for (let i = 0; i < String(seed).length; i++) hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+                const str = String(seed || 'default');
+                for (let i = 0; i < str.length; i++) {
+                    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                    hash |= 0;
+                }
                 return palettes[Math.abs(hash) % palettes.length];
+            }
+
+            function getCategoryInfo(categoryId) {
+                return CATEGORIES.find(c => c.id === categoryId) || { emoji: '📌', label: categoryId || 'Outros' };
             }
 
             function createCardElement(bookmark, index) {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.dataset.id = bookmark.id;
+                card.setAttribute('data-id', bookmark.id);
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = '';
                 card.style.animationDelay = Math.min(index * 0.07, 0.6) + 's';
 
-                const imgWrapper = document.createElement('div');
-                imgWrapper.className = 'card-image-wrapper';
-                if (bookmark.imageUrl) {
+                const imageWrapper = document.createElement('div');
+                imageWrapper.className = 'card-image-wrapper';
+                if (bookmark.imageUrl && bookmark.imageUrl.trim().length > 0) {
                     const img = document.createElement('img');
-                    img.src = bookmark.imageUrl;
-                    img.onerror = () => { img.remove(); imgWrapper.appendChild(createFallback(bookmark)); };
-                    imgWrapper.appendChild(img);
-                } else imgWrapper.appendChild(createFallback(bookmark));
+                    img.src = bookmark.imageUrl.trim();
+                    img.alt = 'Screenshot de ' + bookmark.name;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        img.style.display = 'none';
+                        imageWrapper.appendChild(createFallbackScreenshot(bookmark));
+                    };
+                    imageWrapper.appendChild(img);
+                } else {
+                    imageWrapper.appendChild(createFallbackScreenshot(bookmark));
+                }
 
                 const btnAccess = document.createElement('a');
                 btnAccess.className = 'btn-access';
-                btnAccess.href = bookmark.siteUrl.startsWith('http') ? bookmark.siteUrl : 'https://' + bookmark.siteUrl;
+                btnAccess.href = normalizeUrl(bookmark.siteUrl);
                 btnAccess.target = '_blank';
+                btnAccess.rel = 'noopener noreferrer';
                 btnAccess.innerHTML = '<span>Acessar Site <span class="arrow-icon">↗</span></span>';
 
-                const content = document.createElement('div');
-                content.className = 'card-content';
-                const catInfo = CATEGORIES.find(c => c.id === bookmark.category) || { emoji: '📌', label: bookmark.category };
-                const catTag = document.createElement('span');
-                catTag.className = 'card-category-tag';
-                catTag.textContent = catInfo.emoji + ' ' + catInfo.label;
-                content.appendChild(catTag);
-                content.insertAdjacentHTML('beforeend', `<h3 class="card-title">${bookmark.name}</h3><p class="card-description">${bookmark.description || 'Sem descrição.'}</p><div class="card-tags"><span class="tag quality-${slugify(bookmark.quality)}">${bookmark.quality}</span><span class="tag cost-${slugify(bookmark.cost)}">${bookmark.cost}</span></div>`);
+                const cardContent = document.createElement('div');
+                cardContent.className = 'card-content';
+                const catInfo = getCategoryInfo(bookmark.category);
+                const categoryTag = document.createElement('span');
+                categoryTag.className = 'card-category-tag';
+                categoryTag.textContent = catInfo.emoji + ' ' + catInfo.label;
+                const title = document.createElement('h3');
+                title.className = 'card-title';
+                title.textContent = bookmark.name;
+                const description = document.createElement('p');
+                description.className = 'card-description';
+                description.textContent = bookmark.description || 'Sem descrição.';
+                const tagsWrapper = document.createElement('div');
+                tagsWrapper.className = 'card-tags';
+                const qualityTag = document.createElement('span');
+                qualityTag.className = 'tag quality-' + slugify(bookmark.quality);
+                qualityTag.textContent = bookmark.quality || 'Bom';
+                const costTag = document.createElement('span');
+                costTag.className = 'tag cost-' + slugify(bookmark.cost);
+                costTag.textContent = bookmark.cost || 'Grátis';
+                tagsWrapper.appendChild(qualityTag);
+                tagsWrapper.appendChild(costTag);
+                cardContent.appendChild(categoryTag);
+                cardContent.appendChild(title);
+                cardContent.appendChild(description);
+                cardContent.appendChild(tagsWrapper);
 
                 const btnRemove = document.createElement('button');
                 btnRemove.className = 'btn-remove';
                 btnRemove.innerHTML = '&times;';
-                btnRemove.addEventListener('click', (e) => { e.stopPropagation(); openConfirmModal(bookmark.id, bookmark.name); });
+                btnRemove.title = 'Remover favorito';
+                btnRemove.setAttribute('aria-label', 'Remover ' + bookmark.name);
+                btnRemove.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    openConfirmModal(bookmark.id, bookmark.name);
+                });
 
-                card.append(imgWrapper, btnAccess, content, btnRemove);
+                card.appendChild(imageWrapper);
+                card.appendChild(btnAccess);
+                card.appendChild(cardContent);
+                card.appendChild(btnRemove);
                 return card;
             }
 
-            function createFallback(bookmark) {
-                const c = bookmark.fallbackColors || generateFallbackColors(bookmark.name);
+            function createFallbackScreenshot(bookmark) {
+                const colors = bookmark.fallbackColors || generateFallbackColors(bookmark.name);
                 const wrapper = document.createElement('div');
                 wrapper.className = 'card-screenshot-fallback';
-                wrapper.style.setProperty('--fallback-bg', c.bg);
-                wrapper.style.setProperty('--accent-color', c.accent);
-                wrapper.style.setProperty('--line-color', c.line);
-                wrapper.innerHTML = `<div class="screenshot-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div><div class="screenshot-body"><div class="code-line"></div><div class="code-line accent"></div><div class="code-line short"></div><div class="code-line medium"></div><div class="code-line"></div></div>`;
+                wrapper.style.setProperty('--fallback-bg', colors.bg);
+                wrapper.style.setProperty('--accent-color', colors.accent);
+                wrapper.style.setProperty('--line-color', colors.line);
+                const header = document.createElement('div');
+                header.className = 'screenshot-header';
+                ['red', 'yellow', 'green'].forEach(color => {
+                    const dot = document.createElement('span');
+                    dot.className = 'dot ' + color;
+                    header.appendChild(dot);
+                });
+                const body = document.createElement('div');
+                body.className = 'screenshot-body';
+                body.style.setProperty('--accent-color', colors.accent);
+                body.style.setProperty('--line-color', colors.line);
+                [{ cls: '' }, { cls: 'accent' }, { cls: 'short' }, { cls: 'medium' }, { cls: '' }].forEach(config => {
+                    const line = document.createElement('div');
+                    line.className = 'code-line ' + (config.cls || '');
+                    body.appendChild(line);
+                });
+                wrapper.appendChild(header);
+                wrapper.appendChild(body);
                 return wrapper;
             }
 
+            // ──────────────────────────────────────
+            // MODAL DE CONFIRMAÇÃO
+            // ──────────────────────────────────────
             function openConfirmModal(id, name) {
-                pendingRemoveId = id; pendingRemoveName = name;
+                pendingRemoveId = id;
+                pendingRemoveName = name;
                 confirmSiteName.textContent = name;
                 confirmOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
+
             function closeConfirmModal() {
                 confirmOverlay.classList.remove('active');
+                document.body.style.overflow = '';
                 pendingRemoveId = null;
+                pendingRemoveName = '';
             }
+
             confirmCancel.addEventListener('click', closeConfirmModal);
-            confirmDelete.addEventListener('click', async () => {
-                if (!pendingRemoveId) return;
-                const id = pendingRemoveId, name = pendingRemoveName;
-                closeConfirmModal();
-                const cardEl = document.querySelector(`.card[data-id="${id}"]`);
-                if (cardEl) cardEl.style.transform = 'scale(0.8)'; cardEl.style.opacity = '0';
-                setTimeout(async () => {
-                    try {
-                        if (usingSupabase) { await deleteBookmarkFromSupabase(id); allBookmarks = await fetchBookmarksFromSupabase(); }
-                        else { allBookmarks = removeBookmarkLocal(id); }
-                        renderCategoryTabs(); renderFilteredCards();
-                        showToast('🗑️ ' + name + ' removido.');
-                    } catch (e) { showToast('Erro ao remover', 'error'); }
-                }, 300);
+            confirmOverlay.addEventListener('click', function(e) {
+                if (e.target === confirmOverlay) closeConfirmModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && confirmOverlay.classList.contains('active')) {
+                    closeConfirmModal();
+                }
             });
 
+            confirmDelete.addEventListener('click', async function() {
+                if (!pendingRemoveId) return;
+                const id = pendingRemoveId;
+                const name = pendingRemoveName;
+                closeConfirmModal();
+
+                const cardToRemove = cardsGrid.querySelector('[data-id="' + id + '"]');
+                if (cardToRemove) {
+                    cardToRemove.style.transition = 'transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease';
+                    cardToRemove.style.transform = 'scale(0.8)';
+                    cardToRemove.style.opacity = '0';
+                    cardToRemove.style.boxShadow = '0 0 30px rgba(255,51,102,0.6)';
+                }
+
+                setTimeout(async () => {
+                    try {
+                        if (usingSupabase) {
+                            await deleteBookmarkFromSupabase(id);
+                            allBookmarks = await fetchBookmarksFromSupabase();
+                        } else {
+                            allBookmarks = removeBookmarkLocal(id);
+                        }
+                        renderCategoryTabs();
+                        renderFilteredCards();
+                        showToast('🗑️ ' + (name || 'Favorito') + ' removido.');
+                    } catch (e) {
+                        showToast('❌ Erro ao remover. Tente novamente.', 'error');
+                        if (usingSupabase) allBookmarks = await fetchBookmarksFromSupabase();
+                        else allBookmarks = loadBookmarksLocal();
+                        renderCategoryTabs();
+                        renderFilteredCards();
+                    }
+                }, 280);
+            });
+
+            // ──────────────────────────────────────
+            // ADICIONAR BOOKMARK
+            // ──────────────────────────────────────
             async function addBookmark(data) {
                 if (isSubmitting) return;
                 isSubmitting = true;
                 btnSubmit.classList.add('loading');
+                btnSubmit.textContent = 'Salvando...';
                 try {
-                    if (usingSupabase) { await insertBookmarkToSupabase(data); allBookmarks = await fetchBookmarksFromSupabase(); }
-                    else { addBookmarkLocal(data); allBookmarks = loadBookmarksLocal(); }
-                    renderCategoryTabs(); renderFilteredCards();
-                    showToast('✅ ' + data.name + ' adicionado!');
-                } catch (e) { showToast('Erro ao salvar', 'error'); }
-                finally { isSubmitting = false; btnSubmit.classList.remove('loading'); }
+                    let newBookmark;
+                    if (usingSupabase) {
+                        newBookmark = await insertBookmarkToSupabase(data);
+                        allBookmarks = await fetchBookmarksFromSupabase();
+                    } else {
+                        newBookmark = addBookmarkLocal(data);
+                        allBookmarks = loadBookmarksLocal();
+                    }
+                    renderCategoryTabs();
+                    renderFilteredCards();
+                    setTimeout(() => {
+                        const newCard = cardsGrid.querySelector('[data-id="' + newBookmark.id + '"]');
+                        if (newCard) {
+                            newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            newCard.style.boxShadow =
+                                '0 0 35px rgba(0,229,255,0.7), 0 0 70px rgba(123,47,255,0.5), 0 16px 40px rgba(0,0,0,0.6)';
+                            newCard.style.borderColor = 'rgba(0,229,255,0.7)';
+                            setTimeout(() => { newCard.style.boxShadow = '';
+                                newCard.style.borderColor = ''; }, 1800);
+                        }
+                    }, 200);
+                    showToast('✅ ' + data.name + ' adicionado com sucesso!');
+                } catch (e) {
+                    showToast('❌ Erro ao salvar. Tente novamente.', 'error');
+                } finally {
+                    isSubmitting = false;
+                    btnSubmit.classList.remove('loading');
+                    btnSubmit.textContent = '💾 Salvar Favorito';
+                }
             }
 
-            function showToast(msg, type = 'success') {
-                toast.textContent = msg;
+            function showToast(message, type = 'success') {
+                if (window._toastTimer) clearTimeout(window._toastTimer);
+                toast.textContent = message;
                 toast.className = 'toast ' + type + ' show';
-                clearTimeout(window._toastTimer);
-                window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+                window._toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 2500);
             }
 
-            function slugify(t) { return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+            function openModal() {
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => inputSiteName.focus(), 350);
+            }
 
-            fabAdd.addEventListener('click', () => { modalOverlay.classList.add('active'); });
-            modalClose.addEventListener('click', () => { modalOverlay.classList.remove('active'); addBookmarkForm.reset(); });
-            addBookmarkForm.addEventListener('submit', async (e) => {
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                addBookmarkForm.reset();
+                inputSiteQuality.value = 'Muito Bom';
+                inputSiteCost.value = 'Grátis';
+                const defaultCat = inputSiteCategory.querySelector('option[value="ferramentas"]');
+                if (defaultCat) defaultCat.selected = true;
+            }
+
+            function normalizeUrl(url) {
+                if (!url) return '#';
+                url = url.trim();
+                if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+                return url;
+            }
+
+            function slugify(text) {
+                if (!text) return 'bom';
+                return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+            }
+
+            fabAdd.addEventListener('click', openModal);
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOverlay.classList.contains(
+                    'active')) closeModal(); });
+
+            addBookmarkForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const name = inputSiteName.value.trim();
-                const url = inputSiteUrl.value.trim();
-                const cat = inputSiteCategory.value;
-                if (!name || !url || !cat) return showToast('Preencha nome, URL e categoria.', 'error');
+                const siteUrl = inputSiteUrl.value.trim();
+                const category = inputSiteCategory.value;
+                if (!name) { showToast('⚠️ Informe o nome do site.', 'error');
+                    inputSiteName.focus(); return; }
+                if (!siteUrl) { showToast('⚠️ Informe a URL do site.', 'error');
+                    inputSiteUrl.focus(); return; }
+                if (!category) { showToast('⚠️ Selecione uma categoria.', 'error');
+                    inputSiteCategory.focus(); return; }
                 await addBookmark({
-                    name, description: inputSiteDescription.value.trim(),
-                    quality: inputSiteQuality.value, cost: inputSiteCost.value,
-                    imageUrl: inputSiteImageUrl.value.trim(), siteUrl: url, category: cat,
+                    name,
+                    description: inputSiteDescription.value.trim(),
+                    quality: inputSiteQuality.value,
+                    cost: inputSiteCost.value,
+                    imageUrl: inputSiteImageUrl.value.trim(),
+                    siteUrl,
+                    category,
+                    fallbackColors: generateFallbackColors(name),
                 });
-                modalOverlay.classList.remove('active'); addBookmarkForm.reset();
+                closeModal();
             });
 
-            document.addEventListener('DOMContentLoaded', loadAllBookmarks);
+            window.__devfavs_reset = async function() {
+                if (!confirm('Tem certeza que deseja restaurar os favoritos padrão?')) return;
+                if (usingSupabase && supabaseClient) {
+                    try {
+                        await supabaseClient.from('bookmarks').delete().neq('id',
+                            '00000000-0000-0000-0000-000000000000');
+                        await seedDefaultBookmarksToSupabase();
+                        allBookmarks = await fetchBookmarksFromSupabase();
+                    } catch (e) {}
+                } else {
+                    localStorage.removeItem(STORAGE_KEY);
+                    allBookmarks = JSON.parse(JSON.stringify(defaultBookmarks));
+                    allBookmarks.forEach((bm, i) => { bm.id = 'local_default_' + i;
+                        bm.fallbackColors = generateFallbackColors(bm.name); });
+                    saveBookmarksLocal(allBookmarks);
+                }
+                renderCategoryTabs();
+                renderFilteredCards();
+                showToast('🔄 Favoritos restaurados!');
+            };
+
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadAllBookmarks);
+            else loadAllBookmarks();
         })();
     </script>
-
 </body>
 </html>
