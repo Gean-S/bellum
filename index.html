@@ -11,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Supabase JS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
     <style>
         /* ============================================
@@ -1443,28 +1442,16 @@
 
     <script>
         (function() {
-            // ──────────────────────────────────────
-            // CONFIGURAÇÃO DO SUPABASE (substitua com suas credenciais)
-            // ──────────────────────────────────────
-            const SUPABASE_URL = 'https://SEU_PROJETO.supabase.co';
-            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
-            const IS_SUPABASE_CONFIGURED = !SUPABASE_URL.includes('SEU_PROJETO') && !SUPABASE_ANON_KEY.includes(
-                '...');
-
+            const SUPABASE_URL = 'https://yfesviniwnfzuuqxhdnl.supabase.co';
+            const SUPABASE_ANON_KEY = 'sb_publishable_jBhk9uthYHdJJs1WJ1TV_Q_U1ARl1JK';
             let supabaseClient = null;
-            let usingSupabase = false;
+            let usingSupabase = true;
 
-            if (IS_SUPABASE_CONFIGURED && typeof supabase !== 'undefined' && supabase.createClient) {
-                try {
-                    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                    usingSupabase = true;
-                    console.log('%c🟢 Supabase %cconectado!', 'color:#00ff88;font-weight:bold;', 'color:#fff;');
-                } catch (e) {
-                    console.warn('Erro ao inicializar Supabase:', e.message);
-                }
-            } else if (!IS_SUPABASE_CONFIGURED) {
-                console.warn('%c⚠️ Supabase não configurado.%c Usando armazenamento local.', 'color:#ffaa00;',
-                    'color:#fff;');
+            try {
+                supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            } catch (e) {
+                usingSupabase = false;
+                console.warn('Erro ao inicializar Supabase:', e.message);
             }
 
             const CATEGORIES = [
@@ -1476,12 +1463,10 @@
                 { id: 'ferramentas', emoji: '🛠️', label: 'Ferramentas' },
                 { id: 'aprendizado', emoji: '📚', label: 'Aprendizado' },
                 { id: 'animacoes', emoji: '🎬', label: 'Animações' },
-                { id: 'backend', emoji: '💾', label: 'Backend/DB' },
                 { id: 'deploy', emoji: '🌐', label: 'Deploy' },
                 { id: 'utilitarios', emoji: '⚡', label: 'Utilitários' },
             ];
 
-            const STORAGE_KEY = 'devfavs_bookmarks_local_fallback';
             const cardsGrid = document.getElementById('cardsGrid');
             const emptyState = document.getElementById('emptyState');
             const emptyStateText = document.getElementById('emptyStateText');
@@ -1514,52 +1499,13 @@
             let pendingRemoveId = null;
             let pendingRemoveName = '';
 
-            const defaultBookmarks = [{
-                name: 'GitHub',
-                description: 'Plataforma de hospedagem de código-fonte com controle de versão Git.',
-                quality: 'Excelente',
-                cost: 'Grátis',
-                imageUrl: '',
-                siteUrl: 'https://github.com',
-                category: 'ferramentas',
-                fallbackColors: { bg: '#0d1117', accent: '#58a6ff', line: '#30363d' },
-            }, {
-                name: 'ChatGPT',
-                description: 'Assistente de IA da OpenAI para programação, escrita e produtividade.',
-                quality: 'Excelente',
-                cost: 'Freemium',
-                imageUrl: '',
-                siteUrl: 'https://chat.openai.com',
-                category: 'ia',
-                fallbackColors: { bg: '#1a3a2a', accent: '#00ff88', line: '#2a4a3a' },
-            }, {
-                name: 'Google Fonts',
-                description: 'Biblioteca gratuita de fontes tipográficas para web e design.',
-                quality: 'Muito Bom',
-                cost: 'Grátis',
-                imageUrl: '',
-                siteUrl: 'https://fonts.google.com',
-                category: 'fontes',
-                fallbackColors: { bg: '#1a1a2e', accent: '#ff6d00', line: '#2a2a3e' },
-            }, {
-                name: 'VS Code Marketplace',
-                description: 'Extensões oficiais para o Visual Studio Code.',
-                quality: 'Excelente',
-                cost: 'Grátis',
-                imageUrl: '',
-                siteUrl: 'https://marketplace.visualstudio.com',
-                category: 'extensoes',
-                fallbackColors: { bg: '#1e1e2e', accent: '#007acc', line: '#3b3b58' },
-            }, ];
-
             function updateConnectionIndicator() {
-                if (usingSupabase) {
+                if (usingSupabase && supabaseClient) {
                     connectionIndicator.className = 'connection-indicator online';
                     connectionIndicator.innerHTML = '<span class="connection-dot"></span> Online (Supabase)';
                 } else {
                     connectionIndicator.className = 'connection-indicator offline';
-                    connectionIndicator.innerHTML =
-                        '<span class="connection-dot"></span> Offline (LocalStorage)';
+                    connectionIndicator.innerHTML = '<span class="connection-dot"></span> Offline (Supabase)';
                 }
             }
             updateConnectionIndicator();
@@ -1612,13 +1558,11 @@
                 return allBookmarks.filter(b => b.category === activeCategory);
             }
 
-            // ──────────────────────────────────────
-            // SUPABASE FUNCTIONS
-            // ──────────────────────────────────────
             async function fetchBookmarksFromSupabase() {
                 if (!supabaseClient) return [];
                 const { data, error } = await supabaseClient.from('bookmarks').select('*').order('created_at', {
-                    ascending: false });
+                    ascending: false,
+                });
                 if (error) throw error;
                 return (data || []).map(row => ({
                     id: row.id,
@@ -1668,76 +1612,6 @@
 
             async function seedDefaultBookmarksToSupabase() {
                 if (!supabaseClient) return;
-                const { count, error } = await supabaseClient.from('bookmarks').select('*', { count: 'exact',
-                    head: true });
-                if (error || count > 0) return;
-                const inserts = defaultBookmarks.map(bm => ({
-                    name: bm.name,
-                    description: bm.description,
-                    quality: bm.quality,
-                    cost: bm.cost,
-                    image_url: bm.imageUrl,
-                    site_url: bm.siteUrl,
-                    category: bm.category,
-                }));
-                await supabaseClient.from('bookmarks').insert(inserts);
-            }
-
-            // ──────────────────────────────────────
-            // LOCAL STORAGE FUNCTIONS
-            // ──────────────────────────────────────
-            function loadBookmarksLocal() {
-                try {
-                    const raw = localStorage.getItem(STORAGE_KEY);
-                    if (raw) {
-                        const data = JSON.parse(raw);
-                        if (Array.isArray(data) && data.length > 0) {
-                            return data.map((bm, i) => ({
-                                ...bm,
-                                id: bm.id || ('local_' + i + '_' + Date.now()),
-                                fallbackColors: bm.fallbackColors || generateFallbackColors(bm.name),
-                                category: bm.category || 'ferramentas',
-                            }));
-                        }
-                    }
-                } catch (e) {}
-                const defaults = JSON.parse(JSON.stringify(defaultBookmarks));
-                defaults.forEach((bm, i) => { bm.id = 'local_default_' + i; });
-                saveBookmarksLocal(defaults);
-                return defaults;
-            }
-
-            function saveBookmarksLocal(bookmarks) {
-                try {
-                    const toSave = bookmarks.map(bm => ({
-                        id: bm.id,
-                        name: bm.name,
-                        description: bm.description,
-                        quality: bm.quality,
-                        cost: bm.cost,
-                        imageUrl: bm.imageUrl,
-                        siteUrl: bm.siteUrl,
-                        category: bm.category,
-                        fallbackColors: bm.fallbackColors,
-                    }));
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
-                } catch (e) {}
-            }
-
-            function addBookmarkLocal(bookmark) {
-                const bookmarks = loadBookmarksLocal();
-                bookmark.id = 'local_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-                bookmark.fallbackColors = generateFallbackColors(bookmark.name);
-                bookmarks.unshift(bookmark);
-                saveBookmarksLocal(bookmarks);
-                return bookmark;
-            }
-
-            function removeBookmarkLocal(id) {
-                const bookmarks = loadBookmarksLocal();
-                const filtered = bookmarks.filter(b => b.id !== id);
-                saveBookmarksLocal(filtered);
-                return filtered;
             }
 
             // ──────────────────────────────────────
@@ -1746,16 +1620,16 @@
             async function loadAllBookmarks() {
                 loadingSpinner.style.display = 'flex';
                 emptyState.style.display = 'none';
-                if (usingSupabase) {
+                if (usingSupabase && supabaseClient) {
                     try {
-                        await seedDefaultBookmarksToSupabase();
                         allBookmarks = await fetchBookmarksFromSupabase();
                     } catch (e) {
-                        allBookmarks = loadBookmarksLocal();
-                        showToast('⚠️ Erro de conexão. Usando dados locais.', 'error');
+                        allBookmarks = [];
+                        showToast('⚠️ Erro ao carregar os favoritos. Verifique o banco e as políticas.', 'error');
                     }
                 } else {
-                    allBookmarks = loadBookmarksLocal();
+                    allBookmarks = [];
+                    showToast('⚠️ Supabase indisponível. Não foi possível carregar os favoritos.', 'error');
                 }
                 loadingSpinner.style.display = 'none';
                 renderCategoryTabs();
@@ -1961,19 +1835,20 @@
 
                 setTimeout(async () => {
                     try {
-                        if (usingSupabase) {
+                        if (usingSupabase && supabaseClient) {
                             await deleteBookmarkFromSupabase(id);
                             allBookmarks = await fetchBookmarksFromSupabase();
                         } else {
-                            allBookmarks = removeBookmarkLocal(id);
+                            showToast('❌ Supabase indisponível. Não foi possível remover.', 'error');
+                            return;
                         }
                         renderCategoryTabs();
                         renderFilteredCards();
                         showToast('🗑️ ' + (name || 'Favorito') + ' removido.');
                     } catch (e) {
                         showToast('❌ Erro ao remover. Tente novamente.', 'error');
-                        if (usingSupabase) allBookmarks = await fetchBookmarksFromSupabase();
-                        else allBookmarks = loadBookmarksLocal();
+                        if (usingSupabase && supabaseClient) allBookmarks = await fetchBookmarksFromSupabase();
+                        else allBookmarks = [];
                         renderCategoryTabs();
                         renderFilteredCards();
                     }
@@ -1990,12 +1865,11 @@
                 btnSubmit.textContent = 'Salvando...';
                 try {
                     let newBookmark;
-                    if (usingSupabase) {
+                    if (usingSupabase && supabaseClient) {
                         newBookmark = await insertBookmarkToSupabase(data);
                         allBookmarks = await fetchBookmarksFromSupabase();
                     } else {
-                        newBookmark = addBookmarkLocal(data);
-                        allBookmarks = loadBookmarksLocal();
+                        throw new Error('Supabase indisponível');
                     }
                     renderCategoryTabs();
                     renderFilteredCards();
@@ -2090,17 +1964,13 @@
                 if (!confirm('Tem certeza que deseja restaurar os favoritos padrão?')) return;
                 if (usingSupabase && supabaseClient) {
                     try {
-                        await supabaseClient.from('bookmarks').delete().neq('id',
-                            '00000000-0000-0000-0000-000000000000');
-                        await seedDefaultBookmarksToSupabase();
-                        allBookmarks = await fetchBookmarksFromSupabase();
-                    } catch (e) {}
+                        await supabaseClient.from('bookmarks').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+                        allBookmarks = [];
+                    } catch (e) {
+                        allBookmarks = [];
+                    }
                 } else {
-                    localStorage.removeItem(STORAGE_KEY);
-                    allBookmarks = JSON.parse(JSON.stringify(defaultBookmarks));
-                    allBookmarks.forEach((bm, i) => { bm.id = 'local_default_' + i;
-                        bm.fallbackColors = generateFallbackColors(bm.name); });
-                    saveBookmarksLocal(allBookmarks);
+                    allBookmarks = [];
                 }
                 renderCategoryTabs();
                 renderFilteredCards();
